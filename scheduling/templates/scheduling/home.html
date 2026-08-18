@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalibre — AI & ML Consultancy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #e2e8f0; min-height: 100vh; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 60px; border-bottom: 1px solid #1e1e2e; }
+        .logo { font-family: "Cormorant Garamond", serif; font-size: 1.9rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 4px; text-transform: uppercase; background: linear-gradient(135deg, #fff 0%, #a78bfa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .logo-accent { color: #7c5cfc; }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { color: #6b6b8a; font-size: 0.875rem; text-decoration: none; transition: color 0.15s; }
+        .nav-links a:hover { color: #c4b5fd; }
+        .nav-btn { background: #7c5cfc; color: white; padding: 9px 20px; border-radius: 8px; font-size: 0.875rem; font-weight: 600; text-decoration: none; }
+
+        .hero { text-align: center; padding: 100px 20px 60px; background: radial-gradient(ellipse at 50% 0%, #1e104066 0%, transparent 70%); }
+        .hero-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 7rem;
+            font-weight: 700;
+            letter-spacing: 20px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 50%, #7c5cfc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .hero-tagline {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: #4a4a6a;
+            margin-bottom: 32px;
+        }
+        .hero-badge { display: inline-block; background: #1e1040; border: 1px solid #7c5cfc44; color: #a78bfa; font-size: 0.75rem; padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; letter-spacing: 0.5px; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 3.2rem; font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero h1 span { color: #7c5cfc; }
+        .hero p { color: #6b6b8a; font-size: 1.1rem; max-width: 560px; margin: 0 auto 36px; line-height: 1.7; }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; }
+        .hero-btn { display: inline-block; background: #7c5cfc; color: white; padding: 14px 32px; border-radius: 10px; font-size: 1rem; font-weight: 600; text-decoration: none; }
+        .hero-btn:hover { background: #6d4ef0; }
+        .hero-btn-outline { display: inline-block; border: 1px solid #7c5cfc44; color: #a78bfa; padding: 14px 32px; border-radius: 10px; font-size: 1rem; font-weight: 600; text-decoration: none; }
+        .hero-btn-outline:hover { background: #1e1040; }
+
+        .trusted { text-align: center; padding: 48px 20px; border-top: 1px solid #1e1e2e; border-bottom: 1px solid #1e1e2e; }
+        .trusted p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #3a3a5a; margin-bottom: 20px; }
+        .trusted-logos { display: flex; justify-content: center; gap: 48px; }
+        .trusted-logo { font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; color: #2a2a4a; font-weight: 700; letter-spacing: 1px; }
+
+        .services { max-width: 1000px; margin: 80px auto; padding: 0 40px; }
+        .section-label { text-align: center; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #4a4a6a; margin-bottom: 12px; }
+        .section-title { text-align: center; font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 48px; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .service-card { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 12px; padding: 28px; transition: border-color 0.2s; }
+        .service-card:hover { border-color: #7c5cfc44; }
+        .service-icon { font-size: 1.8rem; margin-bottom: 16px; }
+        .service-card h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .service-card p { font-size: 0.85rem; color: #4a4a6a; line-height: 1.6; }
+        .service-duration { margin-top: 16px; font-size: 0.75rem; color: #7c5cfc; font-weight: 500; }
+
+        .stats { max-width: 900px; margin: 0 auto 80px; padding: 0 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .stat { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 12px; padding: 28px; text-align: center; }
+        .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: #7c5cfc; margin-bottom: 6px; }
+        .stat-label { font-size: 0.8rem; color: #4a4a6a; }
+
+        .how { max-width: 800px; margin: 0 auto 80px; padding: 0 40px; text-align: center; }
+        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+        .step { text-align: center; }
+        .step-num { width: 40px; height: 40px; border-radius: 50%; background: #1e1040; border: 1px solid #7c5cfc44; color: #7c5cfc; font-family: 'Space Grotesk', sans-serif; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+        .step h4 { font-size: 0.875rem; color: #fff; margin-bottom: 8px; }
+        .step p { font-size: 0.8rem; color: #4a4a6a; line-height: 1.6; }
+
+        .cta { text-align: center; padding: 80px 20px; background: linear-gradient(135deg, #1e1040 0%, #0a0a0f 100%); border-top: 1px solid #1e1e2e; }
+        .cta h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: #fff; margin-bottom: 12px; }
+        .cta p { color: #6b6b8a; margin-bottom: 28px; }
+
+        footer { text-align: center; padding: 24px; border-top: 1px solid #1e1e2e; color: #3a3a5a; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="/" class="logo">KALIBRE</a>
+    <div class="nav-links">
+        <a href="/services/">Services</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+    </div>
+    <a href="/booking/" class="nav-btn">Book a Session</a>
+</nav>
+
+<div class="hero">
+    <div class="hero-badge">✦ Where smart businesses get smarter</div>
+    <h1>Turn your data into<br><span>intelligent decisions</span></h1>
+    <p>Kalibre connects businesses with ML experts for strategy sessions, model audits, data pipeline reviews, and AI implementation guidance.</p>
+    <div class="hero-btns">
+        <a href="/booking/" class="hero-btn">Book a Session →</a>
+        <a href="/services/" class="hero-btn-outline">View Services</a>
+    </div>
+</div>
+
+<div class="trusted">
+    <p>Trusted by teams building with</p>
+    <div class="trusted-logos">
+        <div class="trusted-logo">PYTHON</div>
+        <div class="trusted-logo">TENSORFLOW</div>
+        <div class="trusted-logo">PYTORCH</div>
+        <div class="trusted-logo">SCIKIT-LEARN</div>
+        <div class="trusted-logo">HUGGING FACE</div>
+    </div>
+</div>
+
+<div class="services">
+    <div class="section-label">What we offer</div>
+    <div class="section-title">Our ML Services</div>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">🧠</div>
+            <h3>ML Strategy Session</h3>
+            <p>Map out where machine learning can add real value to your business. We identify use cases, assess feasibility, and build a roadmap.</p>
+            <div class="service-duration">⏱ 60 minutes</div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🔍</div>
+            <h3>Model Audit & Review</h3>
+            <p>Already have a model in production? We review performance, bias, drift, and reliability — and tell you exactly what to fix.</p>
+            <div class="service-duration">⏱ 90 minutes</div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">📊</div>
+            <h3>Data Pipeline Consultation</h3>
+            <p>Clean data is the foundation of good ML. We audit your data collection, storage, and preprocessing workflows end to end.</p>
+            <div class="service-duration">⏱ 60 minutes</div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🚀</div>
+            <h3>ML Implementation Kickoff</h3>
+            <p>Starting a new ML project? We align your team on architecture, tooling, and milestones before a single line of code is written.</p>
+            <div class="service-duration">⏱ 45 minutes</div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">💡</div>
+            <h3>AI Product Advisory</h3>
+            <p>Building an AI-powered product? We advise on feature design, model selection, and how to communicate AI capabilities to users.</p>
+            <div class="service-duration">⏱ 60 minutes</div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🔄</div>
+            <h3>Follow-up Review</h3>
+            <p>Check in after implementation. We review progress, resolve blockers, and adjust the plan based on real-world results.</p>
+            <div class="service-duration">⏱ 30 minutes</div>
+        </div>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Sessions Completed</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Businesses Advised</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">ML Specializations</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num">24h</div>
+        <div class="stat-label">Booking Confirmation</div>
+    </div>
+</div>
+
+<div class="how">
+    <div class="section-label">The process</div>
+    <div class="section-title">How It Works</div>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <h4>Pick a Service</h4>
+            <p>Choose the ML session type that fits your current challenge.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <h4>Book a Slot</h4>
+            <p>Select your preferred date and time. Takes under 2 minutes.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <h4>Get Confirmed</h4>
+            <p>We review and confirm your booking within 24 hours.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <h4>Get Results</h4>
+            <p>Walk away with a clear plan and expert guidance.</p>
+        </div>
+    </div>
+</div>
+
+<div class="cta">
+    <h2>Ready to build smarter?</h2>
+    <p>Book a session with an ML expert and start making your data work for you.</p>
+    <a href="/booking/" class="hero-btn">Book a Session →</a>
+</div>
+
+<footer>© 2026 Kalibre AI Consultancy · Port Harcourt, Nigeria · Staff access via invite only.</footer>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalibre — Contact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #e2e8f0; min-height: 100vh; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 60px; border-bottom: 1px solid #1e1e2e; }
+        .logo { font-family: "Cormorant Garamond", serif; font-size: 1.9rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 4px; text-transform: uppercase; background: linear-gradient(135deg, #fff 0%, #a78bfa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .logo-accent { color: #7c5cfc; }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { color: #6b6b8a; font-size: 0.875rem; text-decoration: none; transition: color 0.15s; }
+        .nav-links a:hover, .nav-links a.active { color: #c4b5fd; }
+        .nav-btn { background: #7c5cfc; color: white; padding: 9px 20px; border-radius: 8px; font-size: 0.875rem; font-weight: 600; text-decoration: none; }
+
+        .hero { text-align: center; padding: 80px 20px 60px; background: radial-gradient(ellipse at 50% 0%, #1e104044 0%, transparent 70%); }
+        .hero-badge { display: inline-block; background: #1e1040; border: 1px solid #7c5cfc44; color: #a78bfa; font-size: 0.75rem; padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.8rem; font-weight: 700; color: #fff; margin-bottom: 16px; letter-spacing: -1px; }
+        .hero p { color: #6b6b8a; font-size: 1rem; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+        .content { max-width: 900px; margin: 60px auto; padding: 0 40px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 32px; }
+
+        .contact-info h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; color: #fff; margin-bottom: 24px; }
+        .info-item { display: flex; gap: 14px; margin-bottom: 24px; align-items: flex-start; }
+        .info-icon { font-size: 1.2rem; margin-top: 2px; }
+        .info-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #4a4a6a; margin-bottom: 4px; }
+        .info-value { font-size: 0.875rem; color: #c4b5fd; }
+
+        .form-card { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 16px; padding: 36px; }
+        .form-card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; color: #fff; margin-bottom: 24px; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; font-size: 0.75rem; font-weight: 600; color: #6b6b8a; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        input, textarea { width: 100%; padding: 12px 16px; background: #0a0a0f; border: 1px solid #1e1e2e; border-radius: 8px; color: #e2e8f0; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.15s; }
+        input:focus, textarea:focus { border-color: #7c5cfc; }
+        textarea { resize: vertical; min-height: 120px; }
+        .submit-btn { width: 100%; padding: 13px; background: #7c5cfc; color: white; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; margin-top: 8px; }
+        .submit-btn:hover { background: #6d4ef0; }
+        .success-msg { background: #052e16; border: 1px solid #22c55e33; color: #22c55e; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; font-size: 0.875rem; }
+
+        footer { text-align: center; padding: 24px; border-top: 1px solid #1e1e2e; color: #3a3a5a; font-size: 0.8rem; margin-top: 80px; }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="/" class="logo">KALIBRE</a>
+    <div class="nav-links">
+        <a href="/services/">Services</a>
+        <a href="/about/">About</a>
+        <a href="/contact/" class="active">Contact</a>
+    </div>
+    <a href="/booking/" class="nav-btn">Book Now</a>
+</nav>
+
+<div class="hero">
+    <div class="hero-badge">✦ Get In Touch</div>
+    <h1>Contact Us</h1>
+    <p>Have a question before booking? Send us a message and we'll get back to you within 24 hours.</p>
+</div>
+
+<div class="content">
+    <div class="contact-info">
+        <h2>Reach us directly</h2>
+        <div class="info-item">
+            <div class="info-icon">📧</div>
+            <div>
+                <div class="info-label">Email</div>
+                <div class="info-value">chinemerem.aguzie283@gmail.com</div>
+            </div>
+        </div>
+        <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div>
+                <div class="info-label">Location</div>
+                <div class="info-value">Port Harcourt, Rivers State, Nigeria</div>
+            </div>
+        </div>
+        <div class="info-item">
+            <div class="info-icon">🕐</div>
+            <div>
+                <div class="info-label">Response Time</div>
+                <div class="info-value">Within 24 hours</div>
+            </div>
+        </div>
+        <div class="info-item">
+            <div class="info-icon">📅</div>
+            <div>
+                <div class="info-label">Availability</div>
+                <div class="info-value">Mon – Fri, 9AM – 6PM WAT</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-card">
+        <h2>Send a message</h2>
+        {% if success %}
+        <div class="success-msg">✅ Message sent! We'll get back to you shortly.</div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+                <label>Subject</label>
+                <input type="text" name="subject" placeholder="What's this about?" required>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea name="message" placeholder="Tell us what you need..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message →</button>
+        </form>
+    </div>
+</div>
+
+<footer>© 2026 Kalibre. Built with Django · Staff access via invite only.</footer>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalibre — Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #e2e8f0; min-height: 100vh; display: flex; }
+
+        .sidebar {
+            width: 240px; background: #0f0f1a; border-right: 1px solid #1e1e2e;
+            display: flex; flex-direction: column; padding: 28px 20px;
+            position: fixed; height: 100vh;
+        }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .logo-accent { color: #7c5cfc; }
+        .logo-sub { font-size: 0.7rem; color: #4a4a6a; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 36px; }
+        .nav-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: #3a3a5a; margin-bottom: 10px; padding-left: 12px; }
+        .nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; color: #6b6b8a; font-size: 0.875rem; font-weight: 500; cursor: pointer; margin-bottom: 2px; transition: all 0.15s; text-decoration: none; }
+        .nav-item:hover { background: #1a1a2e; color: #c4b5fd; }
+        .nav-item.active { background: #1e1040; color: #a78bfa; }
+        .nav-icon { font-size: 1rem; width: 20px; text-align: center; }
+        .sidebar-bottom { margin-top: auto; padding-top: 20px; border-top: 1px solid #1e1e2e; }
+        .user-pill { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; background: #1a1a2e; }
+        .avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #7c5cfc, #a78bfa); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: white; flex-shrink: 0; }
+        .user-info .name { font-size: 0.8rem; font-weight: 600; color: #e2e8f0; }
+        .user-info .role { font-size: 0.7rem; color: #4a4a6a; }
+
+        .main { margin-left: 240px; flex: 1; padding: 36px 40px; }
+        .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 36px; }
+        .page-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .page-subtitle { color: #4a4a6a; font-size: 0.875rem; margin-top: 2px; }
+        .date-badge { background: #0f0f1a; border: 1px solid #1e1e2e; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; color: #6b6b8a; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+        .stat-card { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 12px; padding: 24px; position: relative; overflow: hidden; transition: border-color 0.2s; }
+        .stat-card:hover { border-color: #7c5cfc44; }
+        .stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #4a4a6a; margin-bottom: 12px; }
+        .stat-number { font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 6px; }
+        .stat-change { font-size: 0.75rem; color: #22c55e; }
+        .stat-icon { position: absolute; top: 20px; right: 20px; font-size: 1.4rem; opacity: 0.15; }
+
+        .welcome-banner { background: linear-gradient(135deg, #1e1040 0%, #0f0f1a 100%); border: 1px solid #7c5cfc33; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; }
+        .welcome-text h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; color: #fff; margin-bottom: 4px; }
+        .welcome-text p { font-size: 0.8rem; color: #6b5caa; }
+        .new-booking-btn { background: #7c5cfc; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 0.875rem; font-weight: 600; cursor: pointer; text-decoration: none; }
+        .new-booking-btn:hover { background: #6d4ef0; }
+
+        .panel { background: #0f0f1a; border: 1px solid #1e1e2e; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .panel-title { font-size: 0.875rem; font-weight: 600; color: #c4b5fd; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        table { width: 100%; border-collapse: collapse; }
+        th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #4a4a6a; padding: 0 16px 12px; text-align: left; }
+        td { padding: 14px 16px; font-size: 0.875rem; color: #c4b5fd; border-top: 1px solid #1a1a2e; }
+        td.name { color: #e2e8f0; font-weight: 500; }
+        td.muted { color: #6b6b8a; }
+
+        .status-badge { font-size: 0.7rem; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+        .status-confirmed { background: #052e16; color: #22c55e; }
+        .status-pending { background: #1c1400; color: #f59e0b; }
+
+        .empty-state { text-align: center; padding: 48px 20px; color: #4a4a6a; }
+        .empty-state p { margin-top: 8px; font-size: 0.875rem; }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="logo">KALIBRE</div>
+    <div class="logo-sub">Staff Portal</div>
+    <div class="nav-label">Menu</div>
+    <a class="nav-item active" href="#">▦ Dashboard</a>
+    <a class="nav-item" href="/booking/">◷ Appointments</a>
+    <a class="nav-item" href="#">◈ Clients</a>
+    <a class="nav-item" href="#">◻ Schedule</a>
+    <div class="sidebar-bottom">
+        <div class="user-pill">
+            <div class="avatar">{{ request.user.username|first|upper }}</div>
+            <div class="user-info">
+                <div class="name">{{ request.user.username }}</div>
+                <div class="role">Staff Member</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="topbar">
+        <div>
+            <div class="page-title">Dashboard</div>
+            <div class="page-subtitle">Here's what's happening</div>
+        </div>
+        <div class="date-badge">📅 June 22, 2026</div>
+    </div>
+
+    <div class="welcome-banner">
+        <div class="welcome-text">
+            <h3>Welcome back, {{ request.user.username }} 👋</h3>
+            <p>You have {{ total }} booking{{ total|pluralize }} in the system.</p>
+        </div>
+        <a href="/booking/" class="new-booking-btn">+ New Booking</a>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <div class="stat-label">Total Bookings</div>
+            <div class="stat-number">{{ total }}</div>
+            <div class="stat-change">All time</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">⏳</div>
+            <div class="stat-label">Pending</div>
+            <div class="stat-number">{{ total }}</div>
+            <div class="stat-change" style="color:#f59e0b;">Awaiting confirmation</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">👤</div>
+            <div class="stat-label">Unique Clients</div>
+            <div class="stat-number">{{ total }}</div>
+            <div class="stat-change">Registered</div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <div class="panel-title">All Bookings</div>
+        </div>
+
+        {% if bookings %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Email</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td class="name">{{ booking.name }}</td>
+                    <td class="muted">{{ booking.email }}</td>
+                    <td class="muted">{{ booking.service }}</td>
+                    <td class="muted">{{ booking.date }}</td>
+                    <td class="muted">{{ booking.time }}</td>
+                    <td><span class="status-badge status-pending">Pending</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            📭
+            <p>No bookings yet. Share the booking link with clients to get started.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

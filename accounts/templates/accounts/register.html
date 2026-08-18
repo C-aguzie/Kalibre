@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalibre — Create Account</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f5f7ff; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); width: 100%; max-width: 440px; }
+        .logo { font-size: 1.6rem; font-weight: 700; color: #4f46e5; margin-bottom: 6px; }
+        .badge { background: #ecfdf5; color: #065f46; padding: 8px 12px; border-radius: 8px; font-size: 0.875rem; margin-bottom: 24px; }
+        label { display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin: 14px 0 5px; }
+        input { width: 100%; padding: 11px 14px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 0.95rem; outline: none; }
+        input:focus { border-color: #4f46e5; }
+        button { width: 100%; margin-top: 20px; padding: 12px; background: #4f46e5; color: white; font-size: 1rem; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background: #4338ca; }
+        .field-error { color: #b91c1c; font-size: 0.8rem; margin-top: 4px; }
+        .help { color: #6b7280; font-size: 0.8rem; margin-top: 4px; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="logo">Kalibre</div>
+    <div class="badge">✅ Invite verified for: <strong>{{ invite.email }}</strong></div>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="id_username">Username</label>
+        <input type="text" name="username" id="id_username" value="{{ form.username.value|default:'' }}" placeholder="Choose a username">
+        {% for error in form.username.errors %}
+            <p class="field-error">⚠ {{ error }}</p>
+        {% endfor %}
+
+        <label for="id_email">Email</label>
+        <input type="email" name="email" id="id_email" value="{{ invite.email }}">
+        {% for error in form.email.errors %}
+            <p class="field-error">⚠ {{ error }}</p>
+        {% endfor %}
+
+        <label for="id_password1">Password</label>
+        <input type="password" name="password1" id="id_password1" placeholder="Create a password">
+        <p class="help">Min 8 characters, not too common, not fully numeric.</p>
+        {% for error in form.password1.errors %}
+            <p class="field-error">⚠ {{ error }}</p>
+        {% endfor %}
+
+        <label for="id_password2">Confirm Password</label>
+        <input type="password" name="password2" id="id_password2" placeholder="Repeat your password">
+        {% for error in form.password2.errors %}
+            <p class="field-error">⚠ {{ error }}</p>
+        {% endfor %}
+
+        <button type="submit">Create Account</button>
+    </form>
+</div>
+</body>
+</html>
